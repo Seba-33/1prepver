@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   title = 'prep';
   vettDati : Dati[] = []
   loading!: boolean
-  obs! : Observable<object>
+  obs! : Observable<Dati[]>
   data! : object
   http : HttpClient
 
@@ -24,14 +24,14 @@ export class AppComponent implements OnInit{
 
   makeChiamata(){
     this.loading = true
-    this.obs = this.http.get('https://my-json-server.typicode.com/malizia-g/verificaPrenotazioni/prenotazioni')
+    this.obs = this.http.get<Dati[]>('https://my-json-server.typicode.com/malizia-g/verificaPrenotazioni/prenotazioni')
     this.obs.subscribe(this.getData)
   } 
 
-  getData = (d : object)=>{
-    this.data = d
+  getData = (d : Dati[])=>{
+    this.vettDati = d
     this.loading = false
-    console.log(this.data)
+    console.log(this.vettDati)
   }
 
   ngOnInit(): void {
