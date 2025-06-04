@@ -6,4 +6,7 @@
 <p>Data Prenotazione: <input type="text"></p>
 <p>Ora Prenotazione: <input type="text"></p>
 
-{{vettDati| json}}
+
+@for(dat of vettDati; track dat){
+  <app-lista-prenotazioni [pren]="dat"></app-lista-prenotazioni>
+}
